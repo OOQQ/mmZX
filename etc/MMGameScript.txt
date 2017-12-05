@@ -1,0 +1,752 @@
+﻿C64.v
+
+GAME SCREENS(famicom)
+==========
+(01startPoint)
+(02façadeA)
+(03façadeB)
+(04mansionHall)
+(05kitchen)
+(06dinningA)
+(07dinningB)
+(08shelve)
+(09pool)
+(10carHut)
+(11meteor)
+(12pepsi)
+(13secretLab)
+(14dungeon)
+(15reactor)(dark)
+(16mundaneRadio)
+(17staircase)(dark)
+(18fundations)
+(19poolBottom)
+(20outsidevault)
+(21art)
+(22media)
+(23insideVault)
+(24medlab)
+(25arcade)
+(26secondFloorHall)(Gten)
+(27photo)
+(28thirdFloorHall)
+(29interstellarRadio)
+(30gTent)
+(31edna)
+(33safe)(dark)
+(32ed)
+(34gym)
+(35bath)
+(36chimney)
+(37astronomy)
+(38wasted)(dark)
+
+(highScores)
+(phoneNumpad)
+(tvAd)
+(threeGuysCorp)
+(meteorPolice)
+(lateTalkShow)
+
+GAME ITEMS
+==========
+(01startPoint)
+-
+(02façadeA)
+-
+(03façadeB)
+/frontdoor
+doormat
+	mansionKey
+-
+(04mansionHall)
+/kitchenDoor
+/outVaultDoor
+gargoyle
+/reactorDoor
+/radioDoor
+-
+(05kitchen)
+/mansionHallDoor
+flashlight
+refrigerator
+	can of pepsi
+/dinningADoor
+-
+(06dinningA)
+/kitchenDoor
+/dinningB
+-
+(07dinningB)
+/dinningA
+/shelveDoor
+-
+(08shelve)
+/dinningBDoor
+glass jar
+fruit drinks
+/poolDoor
+-
+(09pool)
+/shelveDoor
+trunk
+/carHutDoor
+-
+(10carHut)
+/poolDoor
+/grate
+-
+(11meteor)
+/grate
+/pepsiDoor
+-
+(12pepsi)
+/meteorDoor
+/secretLabDoor
+-
+(13secretLab)
+/pepsiDoor
+/dungeonDoor
+-
+(14dungeon)
+/secretLabDoor
+/reactorDoor
+-
+(15reactor)(dark)
+/dungeonDoor
+silver key
+/mansionHall
+-
+(16mundaneRadio)
+/mansionHallDoor
+radio
+cabinet
+/staircaseDoor
+-
+(17staircase)(dark)
+/mundaneRadioDoor
+lamp
+staircase
+loosePanel
+	cassetteTape
+phone
+-
+(18fundations)
+/grate
+waterValve
+-
+(19poolBottom)
+/poolStairs
+-
+(20outsidevault)
+/stairs
+/poolStairs
+/poolStairs
+-
+(21art)
+/outsideVaultDoor
+bowl of wax fruit
+paint remover
+-
+(22media)
+/outsideVaultDoor
+piano
+tv
+-
+(23insideVault)
+statue
+/arcadeDoor
+/medlabDoor
+/secondFloorHallStairs
+-
+(24medlab)
+/insdideVaultDoor
+-
+(25arcade)
+/insdideVaultDoor
+-
+(26secondFloorHall)(Gten)
+/insideVaultStairs
+/thirdFloorHallStairs
+-
+(27photo)
+/secondFloorHall
+-
+(28thirdFloorHall)
+/interstellarRadioDoor
+/secondFloorHallStairs
+-
+(29interstellarRadio)
+/thirdFloorHallDoor
+-
+(30gTent)
+/interstellarRadioStairs
+-
+(31edna)
+/thirdFloorHallDoor
+-
+(33safe)(dark)
+-
+(32ed)
+/thirdFloorHallDoor
+-
+(34gym)
+/thirdFloorHallDoor
+-
+(35bath)
+-
+(36chimney)
+/thirdFloorHallDoor
+-
+(37astronomy)
+-
+(38wasted)(dark)
+-
+
+==========
+zxSpectrum char line width: 32
+xxxx_xxxx_xxxx_xxxx_xxxx_xxxx_x_
+==========
+
+SELECT SCREEN
+==========
+Please select two other kids
+
+Dave: Sandy's bodyfriend
+Organizer of the rescue effort
+
+Bernard: physics club president
+and winner of the Geek award
+
+Razor: lead singer for the punk
+band "Razor & the Scummettes"
+
+Syd: an aspiring musician trying
+to start his own new-wave band
+
+Michael: ace photographer for
+the college newspaper
+
+Wendy: waiting for her big first
+break as a famous novelist
+
+Jeff: hangs out on the beach
+responds to the name surfer dude
+
+=side 1=
+
+INTRO
+------
+Twenty years ago today...
+A Lucasfilm Games Production
+Designed and written by
+Ron Gilbert & Gary Winnick
+Programmed by
+Ron Gilbert, David Fox & Carl Mey
+Art & animation by Gary Winnick
+Sound effects by Chris Grigg
+Original music by
+Chris Grigg & David Lawrence
+
+PROLOGUE
+------
+(StartingPoint)
+(Dave) Ok! This looks like the old mansion
+(Dave) I'm sure I saw Dr. Fred take Sandy here
+(Dave) It's up to us to get her out
+(Dave) This could be real dangerous
+(Dave) If anyone wants to back out...
+(Bernard) Ok! I'm outta here!
+(Dave)= BERNARD don't be a tuna head!
+(Dave) It's Sandy we're talking about!
+(Bernard) ...Ok
+(Razor) I heard Dr. Fred was kinda cute
+(Dave) Ok! Let's go rescue Sandy!
+------
+
+=Side 2=
+
+(StartingPoint)
+/sign/
+READ /sign/
+	(All) WARNING!! Trespassers will be horribly mutilated
+------
+(Façade)
+/mailbox/
+/flag/
+/doormat/
+/grating/
+/door1/(fontDoor) - to(MansionHall/door1/)
+/bushes/ OPEN -> /grating/
+/grating/ OPEN - to(Basement/hatch1/) (Jeff) Easy!
+/package/ (appears after a while playing) OPEN -> /stamps/ (Razor) Some uncancelled stamps came off! 
+/rug/
+/flag/
+/mailbox/ OPEN -> /mailboxOpen/
+/mailboxOpen/ USE /tape in stamped envelope/
+/mailboxLoadedOpen/ CLOSE -> /mailboxLoadedClose/
+/flag0/ USE -> /flag1/
+------
+(Basement)
+/hatch1/ - to(Façade/grating1/)
+/water valve/ OPEN -> (PoolEmpty)
+------
+(MansionHall)
+/door1/ - to(MansionFaçade/door1/)
+/door2/ - to(Kitchen/door1/)
+/stairs1/ - to(OutVaultDoor/stairs1/)
+/gargoyle1/
+/gargoyle2/ (Push) - opens /door2/ to REACTOR
+/door3/ - to(Reactor/stairs1/)(alwaysClosedAtRefresh)
+/door4/ - to(DinningRoom/door1/)
+------
+(Kitchen)
+/flashlight/
+/stove/ OPEN -> (Bernard)I'd eather use the microwave
+/very dull knives/ PICK UP -> (Bernard)They're glued to the wall
+/faucet/ TURN ON
+/chainwsaw/ READ -> (Bernard) There's nothing to read on it
+/chainwsaw/ TURN ON -> (Bernard) I think it's out of gas
+/chainwsaw/ CLOSE -> (Bernard) That doesn't seem to work
+/glass jar/ USE /faucet/ -> /jar of water/
+/microwave oven/ OPEN
+/glass jar/ USE /microwave ovenLoaded1/
+/sealed envelope/ USE /microwave ovenLoaded2/
+/microwave ovenLoaded2/ CLOSE
+/microwave ovenLoaded2/ TURN ON -> (pings)
+/microwave ovenLoaded2/ OPEN -> /envelope/
+/envelope/ OPEN /quarter/ (Bernard) There was a quarter inside the envelope
+/door1/ - to(mansionHall/door2/)
+/door2/ - to(DinningRoom/door1/)
+/refrigerator/ -> OPEN /can of Pepsi/
+------
+(Reactor)(1ºlightsOff)
+/door1/ - to(Dungeon/door2/)
+/radioactive slime/
+/stairs1/ - to(MansionHall/door3/)
+------
+(OutVaultDoor)
+/door1/ 
+/door2/ - to(InVaultDoor/door1/)
+/stairs1/ - to(MansionHall/st airs1/)
+/door3/ - to(pianoRoom/door1/)
+------
+(InVaultDoor)
+/statue/
+/door1/ - to(OutVaultDoor/door2/)
+/door2/
+/door3/ - to(Arcade/door1/)
+/stairs1/ - to(SecondFloorHall/stairs2/)
+------
+(SecondFloorHall)(1ºGtenINSIDE)
+/stairs1/ - to(ThirdFoolHall/stairs1/)
+(Gtent) You can't pass until you feed me!
+	give bowl of wax fruit to green tentacle - (Gtent) WOW! My favourite! THAT's what I wanted!
+	give can of Pepsi to green tentacle - (Gtent) Thanks! *Gtent moves*
+
+/door1/
+/stairs2/ - to(InVaultDoor/stairs1/)
+------
+(ThirdFloorHall)
+/stairs1/ - to(SecondFloorHall/stairs1/)
+/door1/ - to(RadioRoom/door1/)
+/door2/ - to(EdnaRoom/door1/)
+/door3/ - to(EdRoom/door1/)
+/door4/ - to(MummyRoom/door1/)
+/door5/ - to(ChimneyRoom/door1/)
+------
+(Radio)
+/cassette player/ -useWith(RECORDEDcassetteTape), turnOn - GlassBreaks, LampBreaks
+	(after played cassette tape)
+	/broken chandelier/
+	/rust key/
+------
+(DinningRoom)
+/door1/ - to(Kitchen/door2/)
+/chair/
+/door2/ - to(Shelve/door1/)
+------
+(Shelve)
+/door1/ - to(DinningRoom/door2/)
+/door2/ - to(Pool1)
+/silver key/ use with /door2/
+------
+(Pool)
+/door1/ - to(Shelve/door2/)
+/gate1/ - to(Car'sHut/gate1/)
+/swimming pool/
+	USE /glass jar/ with /swimming pool/ - glass of water
+------
+(Staircase)(first time Dark)
+/lamp/ TURN ON
+/warning/ READ -> Out of order.
+/phone/ FIX with /tools/ -> /phoneFixed/ (Bernard) That should do it
+/phoneFixed/ USE -> (NumPad)
+/numberKO/ -> 
+/numberOK/ -> (Edna)(EdnaRoom)CINEMATIC
+	(Edna) Now who could that be?
+	(Edna) Hello?
+	(Edna) Who's there?
+	(Edna) Is this a prank phone call?	
+	(Edna) It doesn't sound like a prank phone call
+	(Edna) ...there's no heavy breathing
+	(Edna) Here, let me show you how to do it...
+	(CINEMATICEND - back to Kid2)
+/numberOK2/ -> (Edna)(EdnaRoom)CINEMATIC
+	(Edna) Hello? Is this you again?
+	(CINEMATICEND - back to Kid2)
+------
+(Numpad)
+5235 -> (StaricaseOK)
+anything else -> (StaricaseKO)
+------
+(EmptyPool)
+/ladder1/ - to(PoolBottom/ladder1/)
+------
+(PoolBottom)
+/ladder1/ - to(EmptyPool/ladder1/)
+/radio/ PICK UP
+	(SecretLab) CINEMATIC
+(Alarm Sound)
+	(Fred) Oh no!
+	(Fred) The pool is empty again!
+	(Fred) We're going to have another meltdown!!
+	(Fred) How can I take over the world...
+	(Fred) ...when I'm on a budget?
+	(Fred) I always get stuck with cheap equipment
+	(Fred) Boy the Meteor is going to be pissed
+	(Fred) TENTACLE!!! FRONT AAAAAAAAAAND CENTER!
+	(pTentacle) Yes sir, Dr. Fred sir
+	(pTentacle) Purple Tentacle at your disposal, sir
+	(Fred) Quick! Go check out the Reactor
+	(pTentacle) Yes sir!
+/glowing key/ PICK UP
+------
+(Arcade)
+/door1/ - to(InVaultDoor/door3/)
+/quarter/ USE /MeterorMess/ -> HIGH SCORES
+------
+(High Scores)
+METEOR MESS
+HIGH SCORES
+DFS 3301
+NES 1594
+WES 0032
+GAME OVER: INSERT QUARTER
+_5 sec delay then return to (Arcade)
+------
+(Dungeon)
+/door1/ USE /glowing key/ EN /bottom lock/ -> /bottomOpen/
+/door1/ USE /glowing key/ EN /top lock/ -> /topOpen/
+/innerDoor/ -> OPEN -> NUMPAD -> 3301 -> OPEN
+/door1/ - to(SecretLab/door1/)
+/door2/ USE /old rusty key/ -> /door2open/ (usar cada vez)
+/door2open/ - to(Reactor/door1/)
+------
+(SecretLab)
+/door1/ - to(dungeon/door1/)
+(1º time)(pTentacle) Ah hah!
+	(pTentacle) I caught you sneaking around our house!
+	(pTentacle) To the dungeon, intruder!
+	(pTentacle) ooopss!
+	(gTentacle) What are you doing to MY FRIEND!!
+	(gTentacle) I've warned you
+	(gTentacle) ...don't mess around with my band members!
+	(gTentacle) NOW GET OUT OF HERE! -> (pTentacle leaves)
+	(gTentacle) That'll take care of him!
+/door2/ - to(PepsiRoom)
+------
+(PepsiRoom)
+/door1/ - to(SecretLab/door2/)
+(1º time)(Fred) Purple Tentacle! Invaders!
+	(Fred) PURPLE TENTACLE!!
+	(Fred) So...
+	(Fred) ...you've gotten past all my safeguards!
+	(Fred) There's only one thing left to do!
+	(Fred) I'm arming the self-destruct mechanism (Beeps)
+	(Fred) Only I know the secret code to stop it!
+/locker/ OPEN -> /radiation suit/
+/door2/ - to(Meteor/door1/)
+------
+(EdRoom)
+/door1/ - to(ThirdFloorHall/door3/)
+	(CINEMATIC)
+	(Ed)(Jeff) Intruder, Halt!
+	(Ed)(Jeff) What are you doing in my house?
+	(Ed)(Jeff) Are you an agent of the evil meteor...
+	(Ed)(Jeff) ...or are you here to help me defeat him?
+	(Ed)(Jeff) Not talking, eh?
+	(Ed)(Jeff) Well to the dungeon, spy!
+	(CINEMATIC END, BACK TO KID2)
+	(CINEMATIC)(Ed)(Jeff)
+	(Ed) Too bad you weren't on my side!
+	(CINEMATIC END, BACK TO KID2)
+/hamster/ PICK UP -> /card key/
+/piggy bank/ OPEN -> /dime/ (Bernard) Damn! I broke it!
+------
+(EdnaRoom)
+/door1/ - to(ThirdFloorHall/door2/)
+/nightstand/
+/small key/
+/ladder/ -to(safeRoom/hatch1/)
+------
+(safeRoom)(firstDark)
+/hatch1/
+/light/
+/painting/ OPEN -> /safe/
+/safe/ OPEN -> /0120/
+/sealed envelope/ PICK UP
+------
+(RadioRoom)
+/ladder1/ - to(gTentRoom/hatch1/)
+/dime/
+/door1/ - to(ThirdFloorHall/door1/)
+------
+(ArtRoom)
+/door1/ - to()
+------
+(workout)
+/door1/ - to()
+/Hunk-O-Matic-Machine/ use -> (Bernard) Ah. I feel much stronger now!  -> /rippedBernard/
+/Hunk-O-Matic-Machine/ use -> (Jeff) Ah. I feel much stronger now! -> /rippedJeff/
+/door2/ - to(bathroom)
+------
+(ChimneyRoom)
+/door1/ - to()
+/man-eating plant/ - GIVE /jar of water/ -> /gigant man-eating plant/
+/gigant man-eating plant/ - GIVE /can of Pepsi/ -> unlocks /paint blotch/
+(gigant man-eating plant) Burp! (repeats periodically)
+/typewriter/ USE /envelope/ -> (Bernard) Ok, I'll type the publisher's address (tak)
+/envelope2/
+/envelope2/ USE /demo tape/ -> /tape in envelope/
+/stamps/ USE /tape in envelope/ -> /tape in stamped envelope/ (Bernard) They stick!
+/paint blotch/
+/paint blotch/ - USE /paint remover/ -> /door2/
+/gigant man-eating plant/ - to(Astronomy/hole1/)
+/door2/ - to(crakedRoom/hatch1/)
+------
+(Bathroom)
+/door1/ - to(mummyRoom)
+/shower curtain/ OPEN -> /water faucet/
+/water faucet/ USE /water faucet handle/ (water faucet removed)
+TURN ON /water faucet handle/ -> the mommy moves(resets after leaving)(number 5235 shows)
+------
+(safe)(firstTimeDark)
+/light/ - TURN ON
+/hatch1/ - to(ChimneyRoom/door2/)
+------
+(media)
+/door1/ - to(OutVaultDoor/door3/)
+/TV/ TURN ON -> (TVScreen)
+/victrola/ -USE WITH(Record)
+/cassette recorder/ -USE WITH(cassetteTape), TURNON - (Jeff)Ok, it's recording
+					    TURNOFF- (Jeff)It stopped recording
+					    /cassette tape recorded1/
+/cassette recorder/ -USE WITH(cassetteTape), TURNON - (Bernard)Ok, it's recording
+/piano/ -USE with(Razor) -> Melody_plays
+					    TURNOFF- (Bernard) It stopped recording
+					    /cassette tape recorded2/
+------
+(TVScreen)
+3 Guys who publish anything!!!
+Send to: 222 Skyscraper way (blinks)
+(caster) Hi all you budding writers, musicians,
+(caster) and game designers!
+(caster) I'm Mark Eteer and my company...
+(caster) ...will publish ANYTHING!
+(caster) Just mail it to the address shown below
+(caster) Don't forget the stamp!
+backs to (mediaRoom)
+------
+(astronomy)
+/hole1/ -to(ChimneyRoom/Gigant man-eating plant/)
+/coin slot/ USE /dime/ -> (pings)
+/left button/
+/right button/ USE -> (Bernard)It's rotating (Buzzs)
+/really powerful telescope/ USE -> 0120
+------
+(gTentRoom)
+/hatch1/ -to(ednaRoom/ladder1/)
+/left speaker/
+/record/
+/mondo stereo/ USE WITH /cassette tape recorded2/ ->
+	(Gtent) Hey, this is great stuff!
+	(Gtent) I could use someone like you in my band!
+	(Gtent) I have a demo tape but it's no use
+	(Gtent) I'll never get a recording contract
+	(Gtent) Even if we get a band together ->
+/demo tape/ PICK UP
+/right speaker/
+/yellow key/
+(Gtent) Oh I'm so depressed
+(Gtent) I'm never going to get my band started!
+(Gtent) My life is going nowhere
+(Gtent) I'm never going to amount to anything
+(Gtent) Eating all that food didn't even help
+/contract/ GIVE /green tentacle/ ->
+	(CINEMATIC)(FRED)(ARCADE)
+	(gTentacle) A recording contract for ME??
+	(gTentacle) This is GREAT!
+	(gTentacle) We'll call our band...
+	(gTentacle) "GT and the Suction Cups"
+	(gTentacle) We'll be on MTV and everything!
+	(gTentacle) And don't forget...
+	(gTentacle) ...I'll protect you no matter what!
+	(gTentacle) Now all we have to do is to get rid of...
+	(gTentacle) ...that Meteor
+------
+(Car'sHut)
+/gate1/ - to(Pool/gate1/)
+/garageDoorClosed/ OPEN -> /trunk/, /water faucet handle/
+PICK UP /water faucet handle/
+/trunk/ OPEN -> (Bernard) The trunk is locked
+/yellow key/ USE /trunk/ -> /tools/
+PICK UP /tools/
+/trunkOpened/ USE /meteor/ -> /trunkLoaded/
+CLOSE /trunkLoadedMeteo/
+/yellow key/ USE /modified rocket engine/ -> END
+------
+(Meteor)
+/door1/ - to(PepsiRoom/door2/)
+Time remaining:
+2:00 minutes until meltdown
+/meteor/ PICK UP -> SEMIFINALCINEMATIC
+/door2/ - to(Car'sHut/grate/)
+------
+
+(END)
+	(Meteor)(Space) Wheee!
+	(Fred)(Sandy)(Jeff)(Façade)
+	(Fred) I'm sorry my mad, insane plan...
+	(Fred) ...caused you so much trouble
+	(Fred) How can I ever repay you for your help?
+	(Jeff) Cash would be nice!!
+	(Fred) Don't be a smart ass!
+	-
+	Congratulations! You won the game! (Intro playing)
+	Pres F7 to play again
+
+==========
+CINEMATIC1 (Fred)(Sandy)(SecretLab)
+==========
+(Fred) Well, my dear. Hope you're having fun!
+(Fred) Whitin minutes it'll all be over
+(Fred) You'll be hooked up to my machine...
+(Fred) ...getting your pretty brains sucked out
+(Sandy) You'll never get away with this!
+(Sandy) Dave and his friends will rescue me!
+(Sandy) You and your meteor can eat slime!
+(Fred) That's what she thinks!
+(Fred) Huehuehuehue
+(Sandy) Help, help, HELP!
+
+CINEMATIC2 (Ed)(edRoom)
+==========
+(Ed) Gee, I'm hungry!
+
+CINEMATIC3 (Ed)(kitchen)
+==========
+(Ed) Tum te tum. Dum de dum
+(Ed) Oh boy! Cheese for my hamster and me!
+
+CINEMATIC4 (Ed)(edRoom)
+==========
+(Ed) Oh, the doorbell!
+(Ed) I wonder if that's my package?
+
+CINEMATIC5 (Ed)(Façade)
+==========
+(Ed) Someone playing tricks on me, eh?
+(Ed) I'll get them next time!
+
+CINEMATIC6 (Ed)(Edna)(EdnaRoom)
+==========
+(Ed) Daddy's been acting very strangely ever...
+(Ed) ...since his secret project in the lab...
+(Edna) YEAH SO!!!
+(Ed) Well, mommy I'm worried about him
+(Ed) He hasn't been at dinner for 5 years...
+(Edna) YEAH SO!!!
+(Ed) ...and he's been bringing those bodies...
+(Ed) ...down in the basement late at night
+(Edna) WHAT'S YOUR POINT ED?!
+(Edna) I'M A VERY BUSY LADY!
+(Ed) nevermind
+
+CINEMATIC7 (Ed)(Fred)(edRoom)
+==========
+(Fred) Hey Ed...
+(Fred) The Meteor wants to borrow...
+(Fred) ...yout hamster and electricity cattle prod
+(Ed) My Hamster! NOBODY touches my HAMSTER!
+(Fred) Better watch it, Ed...
+(Fred) ...you're going to piss-off the Meteor
+(Fred) It already thinks you stole...
+(Fred) ...my purple card key
+(Ed) Er...
+(Ed) I don't know what you're talking about!
+(Fred) I can't get to the Meteor without it
+(Ed) Oh, really?
+(Fred) Shape up, kid!
+
+CINEMATIC8 (Edna)(Fred)(ednaRoom)
+==========
+(Fred) Edna...
+(Fred) I'm having trouble with the Zom-B-Matic
+(Fred) I need to shut down the power
+(Fred) It'll be off for 5 or 6 minutes
+(Edna) Is this all you have to say to me?
+(Edna) You've been in the basement...
+(Edna) ...for the past 5 years?
+(Edna) Sometimes I think you like that Meteor...
+(Edna) ...MORE THAN ME!
+(Fred) Don't worry my little Beauty Queen...
+(Fred) ...soon everything will be different
+(Edna) Sure
+
+CINEMATIC9 (Fred)(Arcade)
+==========
+(Fred) I guess the power's out	-> ALL ROOMS DARK
+
+CINEMATIC10 (Producer)(Offices)
+==========
+(Producer) A cassette tape!
+(Producer) Now, where's the play button?
+(plays main title)
+(Producer) Wonderful!
+(Producer) Outrageous!
+(Producer) AWESOME!!
+(Producer) This will be a MEGAHIT!
+(Producer) I've got to sign them right now!
+(5 minutes after, a dorbell will ring, a /contract/ is in the mailbox)
+
+(SemiFinalCinematic)
+(PepsiRoom)(Fred)(Sandy)
+(Fred) Oh... what happened?
+(Fred) I feel much better now!
+(Fred) I'm free of this machine's control!
+(Fred) But wait!
+(Fred) The self-destruct sequence was initiated!
+(Fred) I'll try to turn it off (beeps)
+(Fred) I can't disable it!
+(Fred) The Meteor must have control...
+(Fred) ...of the entire system!
+(Fred) Hey kid!
+(Fred) You've got to help me!
+(Fred) We have to get rid of that Meteor...
+(Fred) Once and for all!
+
+(PepsiRoom)(pTentacle)(Sandy)(Fred)
+(Sandy) Get away from me you purple slime geek!
+(Sandy) Don't touch me!
+(Fred) PURPLE TENTACLE!!
+(Fred) Stop playing with the lab experiments
+(Fred) Bring her, the machine is ready
+(Fred) Hue hue hue
+(Sandy) EEEEEEEEEK!!!!
+
+(InDarkRoom)It's too dark to read
+/hamster/ -> GIVE to /razor/ (Razor) Oh, how cute!
+/hamster/ USE /microwave ovenHamLoadedOpen/ -> CLOSE
+/microwave ovenHamLoadedClosed/ -> USE (Razon) The power's off
+/hamster/ USE -> /exploded hamster/ PICK UP (Razor)Yum! Should I take white or dark meat? 
